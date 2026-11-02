@@ -1,0 +1,18 @@
+# Nombre de réplicas de l'application (peut être ajusté ou géré par le HPA)
+replicaCount: 2
+
+image:
+  # Nom du registre et de l'image de votre application de billetterie[cite: 1]
+  repository: registre.exemple/billetterie
+  pullPolicy: IfNotPresent
+  # Tag initial de l'image (à modifier pour déclencher les mises à jour GitOps)[cite: 1]
+  tag: "1.0.0"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 5000
+
+probes:
+  livenessPath: /healthz
+  readinessPath: /ready
