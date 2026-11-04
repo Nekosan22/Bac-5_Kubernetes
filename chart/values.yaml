@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: traefik/whoami
-  tag: "latest"
+  repository: localhost/gabictator-api
+  tag: "0.1.0"
   pullPolicy: IfNotPresent
 
 service:
@@ -10,6 +10,6 @@ service:
   port: 80
   targetPort: 5000
 
-# Désactivation temporaire des probes si elles posent problème
 probes:
-  enabled: false
+  livenessPath: /healthz
+  readinessPath: /ready
