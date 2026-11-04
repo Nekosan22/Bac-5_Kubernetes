@@ -15,22 +15,31 @@ spec:
       labels:
         app.kubernetes.io/name: billetterie
     spec:
+      securityContext:
+        runAsUser: 0
       containers:
         - name: billetterie
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-        - containerPort: 8080
-          name: http
-      livenessProbe:
-        httpGet:
-          path: /healthz
-          port: 8080
-        initialDelaySeconds: 15
-        periodSeconds: 10
-      readinessProbe:
-        httpGet:
-          path: /ready
-          port: 8080
-        initialDelaySeconds: 5
-        periodSeconds: 5
+            - containerPort: 8080
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
