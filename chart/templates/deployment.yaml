@@ -15,8 +15,6 @@ spec:
       labels:
         app.kubernetes.io/name: billetterie
     spec:
-      securityContext:
-        runAsUser: 0
       containers:
         - name: billetterie
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
