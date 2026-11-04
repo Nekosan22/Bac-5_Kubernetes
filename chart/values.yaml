@@ -1,15 +1,18 @@
-replicaCount: 1
+# Nombre de réplicas de l'application (peut être ajusté ou géré par le HPA)
+replicaCount: 2
 
 image:
+  # Nom du registre et de l'image de votre application de billetterie[cite: 1]
   repository: localhost/gabictator-api
+  pullPolicy: Never
+  # Tag initial de l'image (à modifier pour déclencher les mises à jour GitOps)[cite: 1]
   tag: "0.1.0"
-  pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
   port: 80
-  targetPort: 5000
+  targetPort: 8080
 
 probes:
-  livenessPath: /healthz
-  readinessPath: /ready
+  livenessPath: /health/live
+  readinessPath: /health/ready
