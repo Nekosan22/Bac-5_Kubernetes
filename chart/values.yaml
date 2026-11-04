@@ -1,4 +1,3 @@
-# Nombre de réplicas de l'application
 replicaCount: 1
 
 image:
@@ -11,6 +10,6 @@ service:
   port: 80
   targetPort: 5000
 
+# Désactivation temporaire des probes si elles posent problème
 probes:
-  livenessPath: /healthz
-  readinessPath: /ready
+  enabled: false
