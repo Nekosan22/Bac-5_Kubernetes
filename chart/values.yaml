@@ -1,11 +1,10 @@
-# Nombre de réplicas de l'application (peut être ajusté ou géré par le HPA)
-replicaCount: 2
+# Nombre de réplicas de l'application
+replicaCount: 1
 
 image:
   repository: traefik/whoami
   tag: "latest"
   pullPolicy: IfNotPresent
-replicaCount: 1
 
 service:
   type: ClusterIP
