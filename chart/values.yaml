@@ -6,7 +6,7 @@ image:
   repository: localhost/gabictator-api
   pullPolicy: Never
   # Tag initial de l'image (à modifier pour déclencher les mises à jour GitOps)[cite: 1]
-  tag: "0.1.0"
+  tag: "0.1.1"
 
 service:
   type: ClusterIP
